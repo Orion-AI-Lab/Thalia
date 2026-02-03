@@ -1,6 +1,6 @@
-# Hephaestus Minicubes
+# Thalia
 
-This is the official repository for `Hephaestus Minicubes` (submitted in NeurIPS 2025, Datasets and Benchmarks track), a novel dataset for volcanic activity monitoring through InSAR satellite imagery. `Hephaestus Minicubes` builds upon `Hephaestus` ([Bountos et al., 2022](https://openaccess.thecvf.com/content/CVPR2022W/EarthVision/html/Bountos_Hephaestus_A_Large_Scale_Multitask_Dataset_Towards_InSAR_Understanding_CVPRW_2022_paper.html)) and offers various key advantages:
+This is the official repository for `Thalia`, a global dataset for volcanic activity monitoring through InSAR imagery. `Thalia` builds upon `Hephaestus` ([Bountos et al., 2022](https://openaccess.thecvf.com/content/CVPR2022W/EarthVision/html/Bountos_Hephaestus_A_Large_Scale_Multitask_Dataset_Towards_InSAR_Understanding_CVPRW_2022_paper.html)) and offers various key advantages:
 
  - Machine Learning-ready state
  - Georeferenced InSAR imagery (vs. PNG format)
@@ -9,33 +9,34 @@ This is the official repository for `Hephaestus Minicubes` (submitted in NeurIPS
  - Zarr file format with spatial and temporal dimensions
  - Additional data critical for volcanic monitoring: Digital Elevation Model (DEM), Confounding stmospheric variables
 
-The dataset covers **38 volcanoes worldwide**, in 6 out of 7 continents. Annotations have been produced by a SAR/InSAR expert through meticulous **photointerpretation**, and offer rich insights on the **deformation type** (sill, dyke, mogi, spheroid, earthquake), the **intensity level** (low, medium, high), the presence of **non-volcanic related fringes** (atmospheric, orbital, glacier) as well as the **volcanic activity phase** (rest, unrest, rebound). Each sample also contains a **text description** of the observed phenomena, ideal for language-based machine learning modelling.
-
+Annotations offer rich insights on the **deformation type** (sill, dyke, mogi, spheroid, earthquake), the **intensity level** (low, medium, high), the presence of **non-volcanic related fringes** (atmospheric, orbital, glacier) as well as the **volcanic activity phase** (rest, unrest, rebound). Each sample also contains a **text description** of the observed phenomena, ideal for language-based machine learning modelling.
 
 You can explore a sample minicube from the dataset and investigate its structure and available annotation variables using the interactive Google Colab notebook below:
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1NeVtXEqrAawe0ICw1prMJSuFdHPHOqlg)
 
 ## Download the dataset
-Follow these steps to download and decompress the dataset:
+You can either download the full dataset and produce your own dataset (option 1) or use the already implemented splits via huggingface (option 2).
 
-1. **Download the dataset**
+Option 1:
 
-   The latest version of the dataset is available here: [Hephaestus_Minicubes_v0](https://www.dropbox.com/scl/fo/o3dlvfs5d0uqh7fm3clqe/ALR3vXd40SyOIxzwwOC5_po?rlkey=ery6e44t5u0osgryyt1qq9z4b&st=kyi2lmek&dl=0)
+1. **Download the full dataset**
 
-2. **Give the decompression script execution permissions**
+   The latest version of the dataset is available here: [Thalia_v0](https://www.dropbox.com/scl/fo/o3dlvfs5d0uqh7fm3clqe/ALR3vXd40SyOIxzwwOC5_po?rlkey=ery6e44t5u0osgryyt1qq9z4b&st=kyi2lmek&dl=0)
 
-   ```bash
-   chmod +x decompress_datacubes.sh
+2. **Export webdatasets**
 
-3. **Run the decompression script**
+ You need to set the `webdataset` parameter to `true` in the configuration file. If a webdataset for the timeseries length specified in the configuration file does not exist, executing the `main.py` script will run on "webdataset creation mode". You need to run the same command 3 times (for each of train, val and test sets) in order to create the full webdataset. When that process ends, run `./webdataset_renaming.sh` (you will need to change the bash script to specify the base directory and the timeseries length to rename).
 
-   ```bash
-   ./decompress_datacubes.sh ./hephaestus_minicubes_download
+ Option 2:
+ 1. **Download the webdatasets**
+
+The webdatasets explained in the paper and used for the benchmark are available via huggingface:
+
 
 ## Benchmark
 
-The code in this repository implements an extensive benchmark on the `Hephaestus Minicubes` dataset with a wide range of established Deep Learning models. The benchmark consists of two basic tasks: **image classification** and **semantic segmentation**, each with both single-image and time-series input. Below we list the models used in the experimentation:
+The code in this repository implements an extensive benchmark on `Thalia` with a wide range of state of the art Deep Learning models. The benchmark consists of two basic tasks: **image classification** and **semantic segmentation**, each with both single-image and time-series input. Below we list the models used in the experimentation:
 
 Classification:
 
@@ -54,10 +55,6 @@ Segmentation:
 ## Data split
 
 We consider a temporal split, using data in `01/2014`-`05/2019` for training, `06/2019`-`12/2019` for validation and `01/2020`-`12/2021` for testing.
-
-## Export webdatasets
-
- You need to set the `webdataset` parameter to `true` in the configuration file. If a webdataset for the timeseries length specified in the configuration file does not exist, executing the `main.py` script will run on "webdataset creation mode". You need to run the same command 3 times (for each of train, val and test sets) in order to create the full webdataset. When that process ends, run `./webdataset_renaming.sh` (you will need to change the bash script to specify the base directory and the timeseries length to rename).
 
 ## How to train a model
 

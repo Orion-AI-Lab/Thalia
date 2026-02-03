@@ -5,9 +5,9 @@
   "task": "classification",  // One of "classification", "segmentation"
   "num_classes": 2,
   "mixed_precision": false,
-  "annotation_path": "/mnt/shared_storage/npapadopoulos/datasets/Hephaestus_annotations/annotations/", // Full annotation path
-  "zarr_path": "/mnt/shared_storage/npapadopoulos/datasets/Hephaestus_Zarr_v2/", // Zarr annotation path
-  "webdataset_root": "/mnt/shared_storage/masdra/Hephaestus_Webdatasets_test/webdatasets/", // Webdataset path
+  "annotation_path": "Thalia_v0.1/annotations/", // Full annotation path
+  "zarr_path": "Thalia_v0.1", // Zarr annotation path
+  "webdataset_root": "webdatasets/", // Webdataset path
   "timeseries": true, // true for timeseries, else false
   "timeseries_length": 3, // The length of the number of samples in the timeseries. Optimal is 3. For 1 the dataset is not processed as timeseries.
   "mask_target": "union", // One of 'last', 'peak', 'all', 'union'.

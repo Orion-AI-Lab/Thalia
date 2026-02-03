@@ -68,7 +68,6 @@ class InSarDataset(torch.utils.data.Dataset):
         self.no_coherence_count = 0
         self.frame_dict = self._get_unique_frames()
     
-
         # Setting random seed
         self._set_random_seed(self.seed)
         # Setting up augmentations
