@@ -15,24 +15,40 @@ You can explore a sample minicube from the dataset and investigate its structure
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1NeVtXEqrAawe0ICw1prMJSuFdHPHOqlg)
 
-## Download the dataset
-You can either download the full dataset and produce your own dataset (option 1) or use the already implemented splits via huggingface (option 2).
+# Download the Dataset
 
-Option 1:
+There are two ways to access the dataset:
 
-1. **Download the full dataset**
+1. **Option 1: Download the full dataset and generate your own webdatasets**  
+2. **Option 2: Use pre-generated splits via Hugging Face**
 
-   The latest version of the dataset is available here: [Thalia_v0](https://www.dropbox.com/scl/fo/o3dlvfs5d0uqh7fm3clqe/ALR3vXd40SyOIxzwwOC5_po?rlkey=ery6e44t5u0osgryyt1qq9z4b&st=kyi2lmek&dl=0)
+---
 
-2. **Export webdatasets**
+## Option 1: Full Dataset Download
 
- You need to set the `webdataset` parameter to `true` in the configuration file. If a webdataset for the timeseries length specified in the configuration file does not exist, executing the `main.py` script will run on "webdataset creation mode". You need to run the same command 3 times (for each of train, val and test sets) in order to create the full webdataset. When that process ends, run `./webdataset_renaming.sh` (you will need to change the bash script to specify the base directory and the timeseries length to rename).
+1. **Download the dataset**  
 
- Option 2:
- 1. **Download the webdatasets**
+   The latest version is available here: [Thalia_v0](https://www.dropbox.com/scl/fo/o3dlvfs5d0uqh7fm3clqe/ALR3vXd40SyOIxzwwOC5_po?rlkey=ery6e44t5u0osgryyt1qq9z4b&st=kyi2lmek&dl=0)
 
-The webdatasets explained in the paper and used for the benchmark are available via huggingface:
+2. **Export Webdatasets**  
 
+   - Set the `webdataset` parameter to `true` in the configuration file.  
+   - If a webdataset for the timeseries length specified in the configuration file does not exist, running `main.py` will automatically enter **webdataset creation mode**.  
+   - Execute the command **three times**, once for each of the train, validation, and test splits, to generate the full dataset.  
+   - After the process completes, run the renaming script:  
+
+     ```bash
+     ./webdataset_renaming.sh
+     ```
+     
+   > Warning: You may need to edit the bash script to specify the correct base directory and timeseries length before running.
+
+---
+
+## Option 2: Use Pre-generated Webdatasets
+
+The webdatasets used in the paper and for benchmarking are available via Hugging Face:  
+[https://huggingface.co/datasets/orion-ai-lab/Thalia](https://huggingface.co/datasets/orion-ai-lab/Thalia)
 
 ## Benchmark
 
