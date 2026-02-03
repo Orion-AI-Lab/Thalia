@@ -1,5 +1,5 @@
 """
-The annotated hephaestus dataset 
+The annotated Thalia dataset 
 """
 
 import json
